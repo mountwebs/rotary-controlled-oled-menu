@@ -7,7 +7,11 @@ from copy import deepcopy
 from PIL import Image, ImageDraw, ImageFont
 from RPi import GPIO
 
-from Oled import SSD1306
+import board
+import digitalio
+
+import adafruit_ssd1306
+# from Oled import SSD1306
 
 
 @dataclass
@@ -31,10 +35,14 @@ class Menu:
         self.current_menu_level = [(None, self.options)]
         self.row_count = 3
 
-        self.oled = SSD1306.SSD1306_128_32(rst=None, gpio=GPIO)
-        self.oled.begin()
-        self.oled.clear()
-        self.oled.display()
+        # self.oled = SSD1306.SSD1306_128_32(rst=None, gpio=GPIO)
+        self.i2c = board.I2C()
+        self.oled_reset = digitalio.DigitalInOut(board.D4)
+        self.oled_width = 128
+        self.oled_height = 64
+        self.oled = adafruit_ssd1306.SSD1306_I2C(self.oled_width, self.oled_height, self.i2c, addr=0x3C, reset=self.oled_reset)
+        self.oled.fill(0)
+        self.oled.show()
 
         self.image = Image.new('1', (self.oled.width, self.oled.height))
         self.draw = ImageDraw.Draw(self.image)
