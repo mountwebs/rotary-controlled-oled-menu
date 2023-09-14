@@ -31,7 +31,7 @@ class Menu:
         self.current_menu_level = [(None, self.options)]
         self.row_count = 3
 
-        self.oled = SSD1306.SSD1306_128_32(rst=None, gpio=GPIO)
+        self.oled = SSD1306.SSD1306_128_64(rst=None, gpio=GPIO)
         self.oled.begin()
         self.oled.clear()
         self.oled.display()
