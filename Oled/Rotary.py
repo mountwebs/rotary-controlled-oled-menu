@@ -12,7 +12,7 @@ class Rotary:
         self.clk_level = 0
         self.dt_level = 0
         self.rotary_thread = None
-        GPIO.setmode(GPIO.BOARD)
+        GPIO.setmode(GPIO.BCM)
         GPIO.setup(self.clk, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
         GPIO.setup(self.dt, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
         GPIO.setup(self.btn, GPIO.IN, pull_up_down=GPIO.PUD_UP)
