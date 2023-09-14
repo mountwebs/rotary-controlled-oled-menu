@@ -4,6 +4,8 @@ from time import sleep
 from Oled.Menu import Menu, MenuAction, MenuParent
 from Oled.Rotary import Rotary
 
+from Oled.Encoder import Encoder
+
 m = Menu([
     MenuAction("First line", lambda: print("First line")),
     MenuAction("A second menu option", lambda: print("Second line")),
@@ -20,6 +22,12 @@ m = Menu([
     MenuAction("Follow the fifth", lambda: print("Fifth option")),
     MenuAction("Support the sixth", lambda: print("Sixth option")),
 ])
+
+def rotarty_to_menu (value, direction):
+    print("* New value: {}, Direction: {}".format(value, direction))
+
+enc = Encoder(26, 19, rotarty_to_menu)
+    
 
 try:
     Rotary(**{'menu': m, 'clk': 17, 'dt': 23, 'btn': 22})
