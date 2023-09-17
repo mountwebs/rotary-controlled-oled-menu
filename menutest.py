@@ -6,9 +6,58 @@ from Oled.Rotary import Rotary
 
 from Oled.Encoder import Encoder
 
-m = Menu([
-    MenuAction("First line", lambda: print("First line")),
-    MenuAction("A second menu option", lambda: print("Second line")),
+# def buildMenu ():
+#     menuArray = []
+#     for track in range(4):
+#         match track:
+#             case 0:
+#                 name = "First track"
+#             case :
+#                 action-2
+#             case :
+#                 action-3
+#             case _:
+#         action-default
+#         menuArray.append(MenuParrent(""))
+# menuArray = [
+#     MenuParent("First track", fileListMenu),
+#     MenuAction("Second track", lambda: print("Second line")),
+#     MenuAction("Third track", lambda: print("Second line")),
+#     MenuAction("Fourth track", lambda: print("Second line")),
+#     MenuAction("Timer", lambda: print("Second line")),
+#     MenuParent("Now to the third", [
+#         MenuAction("First sub-option", lambda: print("First sub-option")),
+#         MenuAction("Second sub-option", lambda: print("Second sub-option")),
+#         MenuParent("Third sub-option", [
+#             MenuAction("First sub-sub-option", lambda: print("First sub-sub-option")),
+#             MenuAction("Second sub-sub-option", lambda: print("Second sub-sub-option")),
+#         ]),
+#         MenuAction("Fourth sub-option", lambda: print("Fourth sub-option")),
+#     ]),
+#     MenuAction("On to the forth", lambda: print("Fourth option")),
+#     MenuAction("Follow the fifth", lambda: print("Fifth option")),
+#     MenuAction("Support the sixth", lambda: print("Sixth option")),
+# ]
+
+dummyFileList = ["a", "b", "c"]
+
+def builtFlieListMenu (fileList):
+    fileListMenu = []
+
+    for trackName in fileList:
+        fileListMenu.append(MenuAction(trackName, lambda: print(trackName)))
+    
+    return fileListMenu
+
+print(builtFlieListMenu(dummyFileList))
+    
+
+menuArray = [
+    MenuParent("First track", builtFlieListMenu(dummyFileList)),
+    MenuAction("Second track", lambda: print("Second line")),
+    MenuAction("Third track", lambda: print("Second line")),
+    MenuAction("Fourth track", lambda: print("Second line")),
+    MenuAction("Timer", lambda: print("Second line")),
     MenuParent("Now to the third", [
         MenuAction("First sub-option", lambda: print("First sub-option")),
         MenuAction("Second sub-option", lambda: print("Second sub-option")),
@@ -21,7 +70,11 @@ m = Menu([
     MenuAction("On to the forth", lambda: print("Fourth option")),
     MenuAction("Follow the fifth", lambda: print("Fifth option")),
     MenuAction("Support the sixth", lambda: print("Sixth option")),
-])
+]
+
+
+
+m = Menu(menuArray)
 
 def rotarty_to_menu (valueChange):
    #  print("* New value: {}, Direction: {}".format(value, direction))
