@@ -1,5 +1,6 @@
 from RPi import GPIO
 
+GPIO.setmode(GPIO.BCM)
 
 class Rotary:
     def __init__(self, clk, dt, btn=None, menu=None):

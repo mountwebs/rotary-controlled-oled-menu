@@ -23,14 +23,18 @@ m = Menu([
     MenuAction("Support the sixth", lambda: print("Sixth option")),
 ])
 
-def rotarty_to_menu (value, direction):
-    print("* New value: {}, Direction: {}".format(value, direction))
+def rotarty_to_menu (valueChange):
+   #  print("* New value: {}, Direction: {}".format(value, direction))
+    m.change_highlight(valueChange)
+    m.render()
 
-enc = Encoder(26, 19, rotarty_to_menu)
-    
+def buttonClick ():
+    m.perform_current_action()
+
+enc = Encoder(17, 23, 22, rotarty_to_menu, buttonClick)
 
 try:
-    Rotary(**{'menu': m, 'clk': 17, 'dt': 23, 'btn': 22})
+    # Rotary(**{'menu': m, 'clk': 17, 'dt': 23, 'btn': 22})
     if len(sys.argv) > 1:
         if sys.argv[1] == 'clear':
             m.blank(True)

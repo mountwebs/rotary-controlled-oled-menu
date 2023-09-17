@@ -50,6 +50,12 @@ class Menu:
 
     def change_highlight(self, by):
         self.set_highlight(0 if self.highlight_option is None else self.highlight_option + by)
+        # print("change_hightlight_num: " + str(num))
+
+    def change_highlight_num(self, num):
+        print("change_hightlight_num: " + str(num))
+        self.set_highlight(0 if self.highlight_option is None else num)
+        
 
     def set_highlight(self, highlight):
         options = self.__current_options()
