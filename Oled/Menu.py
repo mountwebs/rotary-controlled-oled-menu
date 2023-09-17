@@ -29,7 +29,7 @@ class Menu:
         self.options = options
         self.highlight_option = None
         self.current_menu_level = [(None, self.options)]
-        self.row_count = 3
+        self.row_count = 6
 
         self.oled = SSD1306.SSD1306_128_64(rst=None, gpio=GPIO)
         self.oled.begin()
